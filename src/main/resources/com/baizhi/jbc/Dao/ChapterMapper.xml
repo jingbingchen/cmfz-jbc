@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.baizhi.jbc.Dao.ChapterDao">
+
+    <!--添加专辑-->
+    <insert id="insert">
+        insert into chapter(id,title,img,duration,size,upload_time,album_id)
+        values (#{id},#{title},#{img},#{duration},#{size},#{upload_time},#{album_id})
+
+    </insert>
+
+
+    <!--删除章节-->
+    <delete id="delete">
+        delete from chapter where id=#{id}
+    </delete>
+
+    <!--修改章节-->
+    <update id="update">
+        update chapter
+        <set>
+            <if test="title!=null">
+                title=#{title},
+            </if>
+            <if test="img!=null">
+                img=#{img},
+            </if>
+            <if test="duration!=null">
+                duration=#{duration},
+            </if>
+            <if test="size!=null">
+                size=#{size},
+            </if>
+            <if test="upload_time!=null">
+                upload_time=#{upload_time},
+            </if>
+            <if test="album_id!=null">
+                album_id=#{album_id}
+            </if>
+        </set>
+        where id=#{id}
+    </update>
+
+    <!--修改章节-->
+    <update id="update1">
+        update chapter
+        <set>
+            <if test="title!=null">
+                title=#{title},
+            </if>
+            <if test="duration!=null">
+                duration=#{duration},
+            </if>
+            <if test="size!=null">
+                size =#{size},
+            </if>
+            <if test="upload_time!=null">
+                upload_time=#{upload_time},
+            </if>
+            <if test="album_id!=null">
+                album_id=#{album_id}
+            </if>
+        </set>
+        where id=#{id}
+    </update>
+
+
+    <!--查询所有章节-->
+    <resultMap id="chapter" type="Chapter">
+        <id column="c_id" property="id"></id>
+        <result column="c_title" property="title"></result>
+        <result column="c_img" property="img"></result>
+        <result column="c_duration" property="duration"></result>
+        <result column="c_size" property="size"></result>
+        <result column="c_upload_time" property="upload_time"></result>
+        <result column="c_album_id" property="album_id"></result>
+
+        <association property="album" javaType="Album">
+            <id column="a_id" property="id"></id>
+            <result column="a_title" property="title"></result>
+            <result column="a_src" property="src"></result>
+            <result column="a_score" property="score"></result>
+            <result column="a_author" property="author"></result>
+            <result column="a_broadcost" property="broadcost"></result>
+            <result column="a_count" property="count"></result>
+            <result column="a_content" property="content"></result>
+            <result column="a_time" property="time"></result>
+        </association>
+
+    </resultMap>
+
+    <select id="selectall" resultMap="chapter">
+        select c.id as c_id,c.title as c_title,c.img as c_img,c.duration as c_duration,c.size as c_size,
+                c.upload_time as c_upload_time,c.album_id as c_album_id,
+                a.id as a_id,a.title as a_title,a.src as a_src,a.score as a_score,a.author as a_author,
+                a.broadcost as a_broadcost,a.count as a_count,a.content as a_content,a.time as a_tiem
+                from chapter c join album a on c.album_id=a.id where c.album_id=#{id}
+
+    </select>
+
+    <!--章节分页-->
+    <select id="page" resultMap="chapter">
+          select c.id as c_id,c.title as c_title,c.img as c_img,c.duration as c_duration,c.size as c_size,
+                c.upload_time as c_upload_time,c.album_id as c_album_id,
+                a.id as a_id,a.title as a_title,a.src as a_src,a.score as a_score,a.author as a_author,
+                a.broadcost as a_broadcost,a.count as a_count,a.content as a_content,a.time as a_tiem
+                from chapter c join album a on c.album_id=a.id where c.album_id=#{id}
+                limit  ${(page-1)*rows},#{rows}
+    </select>
+
+    <!--查询总条数-->
+    <select id="totalcount" resultType="int">
+        select count(*) from chapter
+    </select>
+
+
+</mapper>

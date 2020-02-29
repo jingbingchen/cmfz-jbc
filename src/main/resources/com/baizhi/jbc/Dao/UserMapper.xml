@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.baizhi.jbc.Dao.UserDao">
+
+    <!--分页-->
+    <select id="page" resultType="User">
+        select * from user limit ${(page-1)*rows},#{rows}
+    </select>
+
+    <!--查询所有总条数-->
+    <select id="totalcount" resultType="int">
+        select count(*) from user
+    </select>
+
+    <!--修改用户状态-->
+    <update id="update">
+        update user
+        <set>
+            <if test="status!=null">
+                status=#{status}
+            </if>
+        </set>
+        where id=#{id}
+    </update>
+
+    <!--导出用户-->
+    <select id="export" resultType="User">
+        select * from user
+    </select>
+
+    <!--查询地图-->
+    <select id="selectBycity" resultType="City">
+        select city as name,count(*) as value from user where sex=#{sex} group by city
+    </select>
+
+    <!--查询每月-->
+    <select id="selectByMonth" resultType="Mouth">
+        select concat(month(time),'月') months ,count(*) count from user where sex=#{sex} GROUP BY month(time)
+    </select>
+
+    <!--模拟-->
+    <insert id="insert">
+        insert into user(id,phone,salt,status,img,name,legal_name,
+        sex,city,sign,time,password) values (#{id},#{phone},#{salt},#{status},#{img},#{name},#{legal_name},#{sex},#{city},#{sign},#{time},#{password})
+    </insert>
+
+</mapper>

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.baizhi.jbc.Dao.GrunDao">
+
+    <!--上师分页-->
+    <select id="page" resultType="Grun">
+       select * from grun limit ${(page-1)*rows},#{rows}
+    </select>
+
+    <!--查询所有总条数-->
+    <select id="totalcount" resultType="int">
+        select count(*) from grun
+    </select>
+
+</mapper>

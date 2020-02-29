@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.baizhi.jbc.Dao.BannerDao">
+
+    <!--查询所有轮播图-->
+    <select id="all" resultType="Banner">
+        select * from banner
+    </select>
+
+    <!--添加轮播图-->
+    <insert id="insert">
+        insert into banner(id,src,des,status,time) values (#{id},#{src},#{des},#{status},#{time})
+    </insert>
+
+    <!--修改轮播图-->
+    <update id="update">
+        update banner
+        <set>
+            <if test="src!=null">
+                src=#{src},
+            </if>
+            <if test="des!=null">
+                des=#{des},
+            </if>
+            <if test="status!=null">
+                status=#{status},
+            </if>
+            <if test="time!=null">
+                time=#{time}
+            </if>
+        </set>
+        where id=#{id}
+    </update>
+
+
+    <!--修改轮播图-->
+    <update id="update1" parameterType="Banner">
+        update banner
+        <set>
+
+            <if test="des!=null">
+                des=#{des},
+            </if>
+            <if test="status!=null">
+                status=#{status},
+            </if>
+            <if test="time!=null">
+                time=#{time}
+            </if>
+        </set>
+        where id=#{id}
+    </update>
+
+    <!--删除轮播图-->
+    <delete id="delete">
+        delete from banner where id=#{id}
+    </delete>
+
+
+    <!--分页-->
+    <select id="page" resultType="Banner">
+        select * from banner limit ${(page-1)*rows},#{rows}
+    </select>
+
+    <!--查询所有总条数-->
+    <select id="totalcount" resultType="int">
+        select count(*) from banner
+    </select>
+
+
+</mapper>

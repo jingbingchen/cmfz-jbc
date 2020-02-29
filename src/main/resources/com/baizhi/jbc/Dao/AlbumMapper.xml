@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.baizhi.jbc.Dao.AlbumDao">
+
+    <!--添加专辑-->
+    <insert id="insert">
+        insert into album(id,title,src,score,author,broadcost,count,content,time)
+        values (#{id},#{title},#{src},#{score},#{author},#{broadcost},#{count},#{content},#{time})
+    </insert>
+
+    <!--删除专辑-->
+    <delete id="delete">
+        delete from album where id=#{id}
+    </delete>
+
+    <!--修改专辑-->
+    <update id="update">
+        update album
+        <set>
+            <if test="title!=null">
+                title=#{title},
+            </if>
+            <if test="src!=null">
+                src=#{src},
+            </if>
+            <if test="score!=null">
+                score=#{score},
+            </if>
+            <if test="author!=null">
+                author=#{author},
+            </if>
+            <if test="broadcost!=null">
+                broadcost=#{broadcost},
+            </if>
+            <if test="count!=null">
+                count=#{count},
+            </if>
+            <if test="content!=null">
+                content=#{content},
+            </if>
+            <if test="time!=null">
+                time=#{time}
+            </if>
+        </set>
+        where id=#{id}
+    </update>
+
+
+    <!--修改专辑-->
+    <update id="update1">
+        update album
+        <set>
+            <if test="title!=null">
+                title=#{title},
+            </if>
+            <if test="score!=null">
+                score=#{score},
+            </if>
+            <if test="author!=null">
+                author=#{author},
+            </if>
+            <if test="broadcost!=null">
+                broadcost=#{broadcost},
+            </if>
+            <if test="count!=null">
+                count=#{count},
+            </if>
+            <if test="content!=null">
+                content=#{content},
+            </if>
+            <if test="time!=null">
+                time=#{time}
+            </if>
+        </set>
+        where id=#{id}
+    </update>
+
+    <!--查询所有专辑-->
+    <select id="all" resultType="Album">
+        select * from album
+    </select>
+
+    <!--专辑分页-->
+    <select id="page" resultType="Album">
+        select * from album limit ${(page-1)*rows},#{rows}
+    </select>
+
+    <!--查询总条数-->
+    <select id="totalcount" resultType="int">
+        select count(*) from album
+    </select>
+
+
+</mapper>
