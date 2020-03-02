@@ -18,17 +18,17 @@ public class AdminAction {
 
     //管理员登陆
     @RequestMapping("/login")
-    public  String  login(String name, String password, HttpSession session,String code1)throws  Exception{
+    public String login(String name, String password, HttpSession session, String code1) throws Exception {
         Admin admin = adminService.login(name, password);
         String code = (String) session.getAttribute("code");
-        session.setAttribute("name",name);
-        if (code1.equals(code)){
-            if (admin!=null){
+        session.setAttribute("name", name);
+        if (code1.equals(code)) {
+            if (admin != null) {
                 return "/main/main";
-            }else {
+            } else {
                 return "redirect:/login/login.jsp";
             }
-        }else {
+        } else {
             return "redirect:/login/login.jsp";
         }
 
@@ -36,7 +36,7 @@ public class AdminAction {
 
     //退出登陆
     @RequestMapping("tuichu")
-    public String tuichu(HttpSession session)throws  Exception{
+    public String tuichu(HttpSession session) throws Exception {
         session.invalidate();
         return "redirect:/login/login.jsp";
 
