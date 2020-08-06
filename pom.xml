@@ -24,6 +24,7 @@
             <name>goeasy</name>
             <url>
                 http://maven.goeasy.io/content/repositories/releases/
+
             </url>
         </repository>
     </repositories>
@@ -33,7 +34,7 @@
         <dependency>
             <groupId>io.goeasy</groupId>
             <artifactId>goeasy-sdk</artifactId>
-            <version>0.3.8</version>
+            <version>0.3.14</version>
         </dependency>
 
         <!--web支持的jar springboot的启动器-->

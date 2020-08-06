@@ -2,6 +2,7 @@ package com.baizhi.jbc.Service;
 
 import com.baizhi.jbc.Dao.AlbumDao;
 import com.baizhi.jbc.entity.Album;
+import com.baizhi.jbc.entity.User;
 import com.baizhi.jbc.util.UUIDUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -105,7 +106,7 @@ public class AlbumServiceImpl implements AlbumService {
             album.setSrc(newName);
 
 
-            //System.out.println()
+         //System.out.println()
             //调用修改方法
             albumDao.update(album);
 
