@@ -115,14 +115,9 @@ public class UserServiceImpl implements UserService {
             user.setSign(null);
             user.setTime(new Date());
             user.setPassword(null);
+
         }
         userDao.insert(user);
     }
-
-
-    String[] aa=userDao.export()
-
-
-            fsdkfk
 
 }
