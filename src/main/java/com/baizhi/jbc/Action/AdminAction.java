@@ -41,7 +41,7 @@ public class AdminAction {
         return "redirect:/login/login.jsp";
 
     }
-    //dsjakdjaskldjsakldjsakl
+    //dsjakdjaskldjsakldjs
     //djksadjks
 
     //wodkhjdhsjd
