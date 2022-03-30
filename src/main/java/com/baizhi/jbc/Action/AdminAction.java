@@ -41,12 +41,7 @@ public class AdminAction {
         return "redirect:/login/login.jsp";
 
     }
-    //dsjakdjaskldjsakldjs
-    //djksadjks
 
-    //wodkhjdhsjd
-//    尖峰时刻晶方科技
-//    ersgf
 
 
 }
