@@ -202,7 +202,6 @@
     <%--播放的模态框--%>
     <div id="AudioModal" class="modal fade" tabindex="-1" role="dialog">
         <div class="modal-dialog" role="document">
-
             <audio id="myAudio" src="" controls/>
         </div><!-- /.modal-dialog -->
     </div><!-- /.modal -->
