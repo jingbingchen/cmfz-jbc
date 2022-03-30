@@ -2,6 +2,8 @@ package com.baizhi.jbc.entity;
 
 
 
+import lombok.Setter;
+
 import java.util.Objects;
 
 
