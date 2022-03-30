@@ -2,11 +2,12 @@ package com.baizhi.jbc.entity;
 
 import cn.afterturn.easypoi.excel.annotation.Excel;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import lombok.Getter;
+import lombok.Setter;
 
 
 import java.util.Date;
 import java.util.Objects;
-
 public class User {
 
     @Excel(name = "ID")
